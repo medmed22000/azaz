@@ -18,7 +18,7 @@ def wizard_spell(wizard_name, target_name):
                 if wizard_life == 0 or target_life == 0 :
                   print('Both the wizard and the creature must be alive to cast this spell')
                 elif money < 20:
-                  print('Team money balance is too low (%d pieces)\U0001f4b5. You need at least 20 pieces\U0001f4b5 to cast this healing spell.' % money)
+                  print('Team money balance is too low (%d pieces)\U0001f4b5. You need at least 20 pieces\U0001f4b5 to cast this spell.' % money)
                 else : 
                   target_life = target_life // 2
                   set_creature_life(target_name, target_life)
