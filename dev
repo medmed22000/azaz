@@ -1,0 +1,29 @@
+def level_up(name):
+    """Give more strength and life to a character, when level up
+
+    Parameters:
+    -----------
+    name: name of player
+    """
+    money = get_team_money()
+    luck = randint(0,3)
+
+    if character_exists(name):
+        if get_character_life(name) > 0:
+            if money > 4:
+                if luck == 0:
+                    set_character_strength(character_name, get_character_strength(character_name) + 4)
+                    print('Character strenght was successfully evoluted ! Character strenght is %d now \U0001F525 ' % get_character_strength(character_name))
+                elif luck == 1 or luck == 2:
+                    set_character_life(character_name, get_character_life(character_name) + 2)
+                    print('Character life was successfully evoluted ! Character life is %d now +\U0001F493 ' % get_character_life(character_name))
+                else:
+                    print('the character did not get anything \U0001F605 ')
+                set_team_money(money - 4)
+                print('Money balance is  %d pieces now \U0001F4B5 .' % get_team_money())
+            else:
+                print('You don't have enough money \U0001F4B5 ')
+        else:
+            print('The player is dead \U0001F480 , he cannot evolve')
+    else:
+        print('Player does not exist !')
