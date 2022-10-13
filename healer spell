@@ -1,0 +1,32 @@
+def healer-spell(healer_name, target_name):
+    """This function do the special action of the healer.
+
+    Parameters
+    ----------
+    healer : The name of the healer (str).
+    target_name : The name of the character the healer want to heal (str).
+    """
+    healer_life = get_character_life(healer_name)
+    target_life = get_character_life(target_name)
+    wizard_variety = get_character_variety(healer_name)
+    money = get_team_money()
+
+    if character_exists(healer_name):
+      if character_exists(target_name):
+        if healer_variety == "healer":
+          if healer_life == 0 or target_life == 0 :
+            print('Both the healer and %s must be alive to cast this spell' % target_name)
+          elif money < 5 :
+            print('Team money balance is too low (%d pieces)\U0001f4b5. You need at least 5 pieces\U0001f4b5 to cast this healing spell.' % money)
+          else : 
+            target_life = target_life + randint(1,10)
+            set_character_life(target_name, target_life)
+            print('Character %s has now %d life \U0001F494' % (target_name, get_character_life(target_name)))
+          set_team_money(money - 5)
+          print('Team money balance is now %d pieces \U0001f4b5 .' % get_team_money())
+        else :
+          print('Character %s must be a healer to be able to cast this spell' % healer_name)
+      else :
+        print('Character %s does not exist. Please choose a different one.' % target_name)
+    else :
+      print('Character %s does not exist. Please choose a different one.' % healer_name)
